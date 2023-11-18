@@ -2,7 +2,7 @@ import { SignerWithAddress } from '@nomicfoundation/hardhat-ethers/signers'
 import { expect } from 'chai'
 import { ethers } from 'hardhat'
 import { Cattestation, Cattestation__factory, IEAS, IEAS__factory } from '../typechain-types'
-import { Signature, TypedDataDomain } from 'ethers'
+import { Signature, TypedDataDomain, Wallet } from 'ethers'
 
 const EAS_SEPOLIA = '0xC2679fBD37d54388Ce493F1DB75320D236e1815e'
 const EAS_PET_SCHEMA_ID_SEPOLIA =
@@ -81,5 +81,21 @@ describe('Cattestation', () => {
         // Decode base64 -> string -> parse json
         const catadata = JSON.parse(atob(rawCatadata.slice(BASE64_JSON_PREAMBLE.length)))
         expect(catadata).to.deep.eq(lunasCatadata)
+    })
+
+    it('lists cats', async () => {
+        const cats = Array(20)
+            .fill(0)
+            .map((_) => Wallet.createRandom())
+        for (const cat of cats) {
+            await cattestation.register(cat.address, {
+                name: `Cat ${cat.address}`,
+                description: 'blabla',
+                image: `ipfs://${cat.address}`,
+            })
+        }
+        const cataddrs = cats.map((cat) => cat.address)
+        expect(await cattestation.list(0, 10)).to.deep.eq(cataddrs.slice(0, 10))
+        expect(await cattestation.list(5, 16)).to.deep.eq(cataddrs.slice(5, 20))
     })
 })

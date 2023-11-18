@@ -113,7 +113,7 @@ contract Cattestation is ERC721Enumerable, EIP712, Ownable {
         uint256 len = offset + limit > cats.length()
             ? cats.length() - offset
             : limit;
-        catslice = new address[](limit);
+        catslice = new address[](len);
         for (uint256 i; i < len; ++i) {
             catslice[i] = cats.at(offset + i);
         }
