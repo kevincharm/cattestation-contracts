@@ -4,6 +4,7 @@
   "description": "pet cats in istanbul, they meow back",
   "scripts": {
     "deploy:arb1": "yarn hardhat --network arb1 run scripts/deploy.ts",
+    "register:arb1": "yarn hardhat --network arb1 run scripts/register.ts",
     "test": "yarn hardhat --network hardhat test"
   },
   "keywords": [],
