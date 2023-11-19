@@ -5,7 +5,7 @@ import { Cattestation, Cattestation__factory, IEAS, IEAS__factory } from '../typ
 import { Signature, TypedDataDomain, Wallet } from 'ethers'
 
 const EAS_SEPOLIA = '0xC2679fBD37d54388Ce493F1DB75320D236e1815e'
-const EAS_PET_SCHEMA_ID_SEPOLIA =
+const EAS_MEOW_SCHEMA_ID_SEPOLIA =
     '0x8854730a24c711d4c862af13bcdc1a87c742c1d0b8fc39042287d2b844848efb'
 
 async function getEip712Domain(address: string): Promise<TypedDataDomain> {
@@ -42,7 +42,7 @@ describe('Cattestation', () => {
         ;[deployer, mehmet, luna, simba] = await ethers.getSigners()
         cattestation = await new Cattestation__factory(deployer).deploy(
             EAS_SEPOLIA,
-            EAS_PET_SCHEMA_ID_SEPOLIA,
+            EAS_MEOW_SCHEMA_ID_SEPOLIA,
         )
         eas = await IEAS__factory.connect(EAS_SEPOLIA, deployer).waitForDeployment()
     })

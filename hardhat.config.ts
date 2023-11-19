@@ -26,6 +26,11 @@ const config: HardhatUserConfig = {
                 count: 10,
             },
         },
+        arb1: {
+            chainId: 0xa4b1,
+            url: process.env.ARB_ONE_URL as string,
+            accounts: [process.env.MAINNET_PK as string],
+        },
         sepolia: {
             chainId: 11155111,
             url: process.env.SEPOLIA_URL as string,
@@ -43,6 +48,7 @@ const config: HardhatUserConfig = {
     etherscan: {
         apiKey: {
             mainnet: process.env.ETHERSCAN_API_KEY as string,
+            arbitrumOne: process.env.ARBISCAN_API_KEY as string,
             sepolia: process.env.ETHERSCAN_API_KEY as string,
         },
     },
