@@ -19,8 +19,8 @@ const config: HardhatUserConfig = {
         hardhat: {
             forking: {
                 enabled: true,
-                url: process.env.SEPOLIA_URL as string,
-                blockNumber: 4721030,
+                url: process.env.ARB_ONE_URL as string,
+                blockNumber: 151801295,
             },
             accounts: {
                 count: 10,
